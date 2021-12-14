@@ -1,19 +1,21 @@
+import { NavigationContainer } from "@react-navigation/native";
 import React, { useState } from "react";
+
 import {
 	View,
 	Text,
 	FlatList,
 	StyleSheet,
 	SafeAreaView,
-	Dimensions,
 	StatusBar,
+	TouchableOpacity,
+	Button,
 } from "react-native";
 import { Image } from "react-native";
 
 const SPACING = 20;
-const { width, height } = Dimensions.get("screen");
 
-const HomeScreen = () => {
+export const HomeScreen = (navigation) => {
 	const [list, setList] = useState([
 		{
 			headertext: "nauna",
@@ -44,7 +46,7 @@ const HomeScreen = () => {
 				}}
 				renderItem={({ item, index }) => {
 					return (
-						<View
+						<TouchableOpacity
 							style={{
 								flexDirection: "row",
 								padding: SPACING,
@@ -59,6 +61,9 @@ const HomeScreen = () => {
 								shadowOpacity: 0.3,
 								shadowRadius: 20,
 							}}
+							onPress={() =>
+								navigation.navigate("Screens", { msg: "I came from screen1" })
+							}
 						>
 							<Image
 								source={item.image}
@@ -84,6 +89,7 @@ const HomeScreen = () => {
 								>
 									{item.title}
 								</Text>
+
 								<Text style={{ fontSize: 16, opacity: 0.6 }}>
 									{item.description}
 								</Text>
@@ -98,7 +104,7 @@ const HomeScreen = () => {
 									{item.credits}
 								</Text>
 							</View>
-						</View>
+						</TouchableOpacity>
 					);
 				}}
 			/>
@@ -106,6 +112,12 @@ const HomeScreen = () => {
 	);
 };
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+	title: {
+		fontSize: 17,
+		fontWeight: "700",
+		color: "black",
+	},
+});
 
 export default HomeScreen;
