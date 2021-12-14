@@ -15,7 +15,7 @@ import { Image } from "react-native";
 
 const SPACING = 20;
 
-export const HomeScreen = (navigation) => {
+const HomeScreen = ({ navigation }) => {
 	const [list, setList] = useState([
 		{
 			headertext: "nauna",
@@ -47,6 +47,9 @@ export const HomeScreen = (navigation) => {
 				renderItem={({ item, index }) => {
 					return (
 						<TouchableOpacity
+							onPress={() => {
+								navigation.navigate("Screens", { screen: "Alphabet" });
+							}}
 							style={{
 								flexDirection: "row",
 								padding: SPACING,
@@ -61,9 +64,6 @@ export const HomeScreen = (navigation) => {
 								shadowOpacity: 0.3,
 								shadowRadius: 20,
 							}}
-							onPress={() =>
-								navigation.navigate("Screens", { msg: "I came from screen1" })
-							}
 						>
 							<Image
 								source={item.image}
