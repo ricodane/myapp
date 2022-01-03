@@ -4,7 +4,10 @@ import { createStackNavigator } from "@react-navigation/stack";
 import HomeScreen from "./HomeScreen";
 import GalleryScreen from "./GalleryScreen";
 import CameraScreen from "./CameraScreen";
-import Screens from "./Screens";
+import AlphabetScreen from "./AlphabetScreen";
+import TermScreen from "./TermScreen";
+import CreditScreen from "./CreditScreen";
+import links from "./links";
 
 const Stack = createStackNavigator();
 
@@ -12,7 +15,10 @@ const FirstScreenNavigator = () => {
 	return (
 		<Stack.Navigator screenOptions={{ headerShown: false }}>
 			<Stack.Screen name="Homescreen" component={HomeScreen} />
-			<Stack.Screen name="Screens" component={Screens} />
+			<Stack.Screen name="AlphabetScreen" component={AlphabetScreen} />
+			<Stack.Screen name="TermScreen" component={TermScreen} />
+			<Stack.Screen name="CreditScreen" component={CreditScreen} />
+			<Stack.Screen name="LinkScreen" component={links} />
 		</Stack.Navigator>
 	);
 };
@@ -23,7 +29,6 @@ const SecondScreenNavigator = () => {
 	return (
 		<Stack.Navigator screenOptions={{ headerShown: false }}>
 			<Stack.Screen name="Camerascreen" component={CameraScreen} />
-			<Stack.Screen name="Screens" component={Screens} />
 		</Stack.Navigator>
 	);
 };
@@ -34,7 +39,6 @@ const ThirdScreenNavigator = () => {
 	return (
 		<Stack.Navigator screenOptions={{ headerShown: false }}>
 			<Stack.Screen name="Galleryscreen" component={GalleryScreen} />
-			<Stack.Screen name="Screens" component={Screens} />
 		</Stack.Navigator>
 	);
 };

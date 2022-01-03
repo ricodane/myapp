@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { Camera } from "expo-camera";
 import { useIsFocused } from "@react-navigation/native";
-import * as ImagePicker from "react-native-image-crop-picker";
 
 const CameraScreen = () => {
 	const [hasPermission, setHasPermission] = useState(null);

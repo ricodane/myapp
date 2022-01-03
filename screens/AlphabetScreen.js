@@ -10,7 +10,7 @@ import {
 
 import { Card } from "react-native-paper";
 
-const Screens = ({ route }) => {
+const AlphabetScreen = ({ route }) => {
 	return (
 		<KeyboardAvoidingView behavior="padding" style={styles.container}>
 			<View>
@@ -59,7 +59,6 @@ const styles = StyleSheet.create({
 	},
 	trigger: {
 		backgroundColor: "black",
-
 		margin: 20,
 		paddingHorizontal: 10,
 		paddingVertical: 5,
@@ -94,4 +93,4 @@ const styles = StyleSheet.create({
 	},
 });
 
-export default Screens;
+export default AlphabetScreen;
