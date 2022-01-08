@@ -43,7 +43,7 @@
     "react-native-flip-card-plus": "^2.0.0",
     "react-native-fs": "^2.18.0",
     "react-native-gesture-flip-card": "^1.0.5",
-    "react-native-gesture-handler": "~1.10.2",
+    "react-native-gesture-handler": "^1.10.3",
     "react-native-hyperlink": "0.0.19",
     "react-native-linear-gradient": "^2.5.6",
     "react-native-maps": "0.28.0",

@@ -1,7 +1,14 @@
-const text = `Aron magamit ug tarong ang Aplikasyon, kinahanglan na usa lang ka pulong ang 'iscan' kada oras na mag scan ang user.\n
-It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.\n
+const text = `Ang pinakalabing maayo na pag gamit sa skan kay dapat isa ka pulong lang sa isa ka skan aron mahatag sa aplikasyon ang tarong na resulta sa imong gi skan. 
 
-The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.\n
+Tanan mga butang pareha sa hulugway na gigamit sa aplikasyon kay dili gikan sa amoa ug gikan kini gi hisgutan sa pag-ila (acknowledgement).\n
+
+Walay kahimtang nga ang aplikasyon or ang mga kauban sa paghimo ani kay responsable sa mga kadaot pareha sa bayrus nga nakuha gikan sa pag gamit o pag download sa aplikasyon. 
+
+Wala sa mga nag himo sa aplikasyon sa tanan pamaagi nga responsable sa imong pag gamit sa mga impormasyon gikan sa aplikasyon.\n
+
+Ang Lugway dili responsible sa mga sayop na gikan sa applikasyon. Ang impormasyon na gikan niini kay naka base sa “as is” nga walay garantiya na kini kay kompleto ug tukma. 
+
+Tanan impormasyon gikan sa Lugway kay wala ga ingon na kini kay di masayop ug luwas sa mga bayrus.\n
 `;
 
 export default text;

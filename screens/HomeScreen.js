@@ -80,7 +80,6 @@ const HomeScreen = ({ navigation }) => {
 			headertext: "nauna",
 			title: "Sinugbuanong Binisaya \nAlpabeto",
 			description: "Mga alpabeto \nsa Sinugbuanong Binisaya",
-			credits: "credits to APK Premier",
 			id: 1,
 			image: require("../pictures/credits.png"),
 			screen_name: "AlphabetScreen",
@@ -89,17 +88,17 @@ const HomeScreen = ({ navigation }) => {
 			headertext: "kaduha",
 			title: "Pulong sa Sinugbuanong \nBinisaya",
 			description: "Mga pananglitan na pulong \nsa Sinugbuanong Binisaya",
-			credits: "credits to HuntersWoodsPH",
 			id: 2,
-			image: require("../pictures/terms.jpg"),
+			image: require("../pictures/terms.png"),
 			screen_name: "TermScreen",
 		},
 		{
 			headertext: "katulo",
 			title: "Links",
 			description:
-				"Dira nakabutang kung asa gikan ang mga materyales na gigamit ug ang mga tagiya ni ini",
+				"Diri nakabutang kung asa gikan ang mga materyales na gigamit",
 			id: 3,
+			image: require("../pictures/links.png"),
 			screen_name: "LinkScreen",
 		},
 	]);
@@ -146,7 +145,7 @@ const HomeScreen = ({ navigation }) => {
 								style={{
 									flex: 1,
 									flexDirection: "column",
-									height: 100,
+									height: 90,
 								}}
 							>
 								<Text
@@ -161,16 +160,6 @@ const HomeScreen = ({ navigation }) => {
 
 								<Text style={{ fontSize: 16, opacity: 0.6 }}>
 									{item.description}
-								</Text>
-								<Text
-									style={{
-										fontSize: 14,
-										opacity: 0.5,
-										color: "#0099cc",
-										paddingLeft: 20,
-									}}
-								>
-									{item.credits}
 								</Text>
 							</View>
 						</TouchableOpacity>
@@ -205,7 +194,7 @@ const HomeScreen = ({ navigation }) => {
 														setToggleCheckBox(newValue)
 													}
 												/>
-												<Text>I understand.</Text>
+												<Text>Nasabtan.</Text>
 											</View>
 											<TouchableOpacity
 												style={[
@@ -251,7 +240,7 @@ const HomeScreen = ({ navigation }) => {
 												style={[styles.continueButton2nd]}
 												onPress={() => setShowModal(false)}
 											>
-												<Text>Continue</Text>
+												<Text>Ipadayon</Text>
 											</TouchableOpacity>
 										</View>
 									</View>

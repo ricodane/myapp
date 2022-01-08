@@ -42,6 +42,10 @@ const MyTabBar = ({ state, descriptors, navigation }) => {
 		<View
 			style={{
 				height: 60,
+				borderColor: "grey",
+				borderWidth: 0.2,
+
+				borderBottomWidth: 1,
 				backgroundColor: "white",
 				alignItems: "center",
 				flexDirection: "row",
