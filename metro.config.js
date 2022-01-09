@@ -1,7 +1,35 @@
-const { getDefaultConfig } = require("@expo/metro-config");
+"use strict";
 
-const defaultConfig = getDefaultConfig(__dirname);
+const { getDefaultConfig } = require("metro-config");
 
-defaultConfig.resolver.assetExts.push("bin");
+module.exports = (async () => {
+	const {
+		resolver: { assetExts },
+	} = await getDefaultConfig();
 
-module.exports = defaultConfig;
+	return {
+		transformer: {
+			getTransformOptions: async () => ({
+				transform: {
+					experimentalImportSupport: false,
+					inlineRequires: true,
+				},
+			}),
+		},
+		resolver: {
+			assetExts: [
+				...assetExts,
+				"obj",
+				"mtl",
+				"JPG",
+				"vrx",
+				"hdr",
+				"gltf",
+				"glb",
+				"bin",
+				"arobject",
+				"gif",
+			],
+		},
+	};
+})();

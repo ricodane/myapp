@@ -37,7 +37,9 @@ export { SecondScreenNavigator };
 
 const ThirdScreenNavigator = () => {
 	return (
-		<Stack.Navigator screenOptions={{ headerShown: false }}>
+		<Stack.Navigator
+			screenOptions={{ headerShown: false, unmountOnBlur: true }}
+		>
 			<Stack.Screen name="Galleryscreen" component={GalleryScreen} />
 		</Stack.Navigator>
 	);

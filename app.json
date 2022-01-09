@@ -23,7 +23,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon1.png",
         "backgroundColor": "#FFE5D8"
-      }
+      },
+      "package": "com.ricodane.finalproj"
     },
     "web": {
       "favicon": "./assets/favicon.png"
