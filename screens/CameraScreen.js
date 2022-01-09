@@ -1,128 +1,85 @@
-import React, { useRef, useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
+	SafeAreaView,
 	View,
 	Text,
 	TouchableOpacity,
+	Platform,
+	Image,
 	StyleSheet,
-	Modal,
-	Pressable,
 	Button,
 } from "react-native";
-import { Camera } from "expo-camera";
-import { useIsFocused } from "@react-navigation/native";
-import {
-	getModel,
-	convertBase64ToTensor,
-	startPrediction,
-} from "../helpers/tensor-helper/tensor-helper";
-import { cropPicture } from "../helpers/image-helper/image-helper";
-import { ActivityIndicator } from "react-native-paper";
-import * as Speech from "expo-speech";
 
-const RESULT_MAPPING = ["Apa", "Yaya", "Sako", "Talong", "Kabo"];
+import TextRecognition from "react-native-text-recognition";
+import {
+	ViroARScene,
+	ViroText,
+	ViroConstants,
+	ViroARSceneNavigator,
+	ViroBox,
+	ViroMaterials,
+	ViroAnimations,
+	Viro3DObject,
+	ViroAmbientLight,
+} from "@viro-community/react-viro";
+
+const InitialScene = (props) => {
+	let data = props.sceneNavigator.viroAppProps;
+	ViroMaterials.createMaterials({
+		eye: {
+			diffuseTexture: require("../assets/eyeTextureNew2.jpg"),
+		},
+		toro: {
+			diffuseTexture: require("../assets/toro.jpg"),
+		},
+	});
+
+	ViroAnimations.registerAnimations({
+		rotate: {
+			duration: 2500,
+			properties: {
+				rotateY: "+=90",
+			},
+		},
+	});
+	return (
+		<ViroARScene>
+			<ViroAmbientLight color="#ffffff" />
+			{data.object === "eye" ? (
+				<ViroText
+					text={"Here"}
+					position={[0, 1, -3]}
+					style={{ fontSize: 80, fontFamily: "Arial", color: "red" }}
+				/>
+			) : (
+				<Viro3DObject
+					source={require("../assets/toro.obj")}
+					position={[0, 0, -6]}
+					rotation={[100, 100, 0]}
+					scale={[0.5, 0.5, 0.5]}
+					animation={{ name: "rotate", loop: true, run: true }}
+					materials={["toro"]}
+					type="OBJ"
+				/>
+			)}
+		</ViroARScene>
+	);
+};
 
 const CameraScreen = () => {
-	const cameraRef = useRef();
-	const [hasPermission, setHasPermission] = useState(null);
-	const [type, setType] = useState(Camera.Constants.Type.back);
-	const isFocused = useIsFocused();
-	const [isProcessing, setIsProcessing] = useState(false);
-	const [presentedText, setPresentedText] = useState("");
-
-	const handleImageCapture = async () => {
-		setIsProcessing(true);
-		const imageData = await cameraRef.current.takePictureAsync({
-			base64: true,
-		});
-		processImagePrediction(imageData);
-	};
-
-	const processImagePrediction = async (base64Image) => {
-		const croppedData = await cropPicture(base64Image, 300);
-		const model = await getModel();
-		const tensor = await convertBase64ToTensor(croppedData.base64);
-
-		const prediction = await startPrediction(model, tensor);
-
-		const highestPrediction = prediction.indexOf(
-			Math.max.apply(null, prediction)
-		);
-		setPresentedText(RESULT_MAPPING[highestPrediction]);
-	};
-
-	const speak = () => {
-		const thingToSay = presentedText;
-		Speech.speak(thingToSay);
-	};
-
-	useEffect(() => {
-		(async () => {
-			const { status } = await Camera.requestCameraPermissionsAsync();
-			setHasPermission(status === "granted");
-		})();
-	}, []);
-
-	if (hasPermission === null) {
-		return <View />;
-	}
-	if (hasPermission === false) {
-		return alert("You have not granted permission to open Camera.");
-	}
+	const [image, setImage] = useState(null);
+	const [text, setText] = useState();
+	const [object, setObject] = useState();
 
 	return (
-		isFocused && (
-			<View style={styles.container}>
-				<Modal visible={isProcessing} transparent={true} animationType="slide">
-					<View style={styles.modal}>
-						<View style={styles.modalContent}>
-							<Text>Your text is {presentedText}</Text>
-
-							{presentedText === "" && <ActivityIndicator size="large" />}
-							<Pressable
-								style={styles.dismissButton}
-								onPress={() => {
-									setPresentedText("");
-									setIsProcessing(false);
-								}}
-							>
-								<Button title="Press to hear some words" onPress={speak} />
-								<Text>Dismiss</Text>
-							</Pressable>
-						</View>
-					</View>
-				</Modal>
-				<Camera style={{ flex: 1 }} type={type} ref={cameraRef}>
-					<View
-						style={{
-							flex: 1,
-							backgroundColor: "transparent",
-							flexDirection: "row",
-						}}
-					>
-						<TouchableOpacity
-							style={{
-								flex: 0.1,
-								alignSelf: "flex-end",
-								alignItems: "center",
-							}}
-							onPress={() => {
-								setType(
-									type === Camera.Constants.Type.back
-										? Camera.Constants.Type.front
-										: Camera.Constants.Type.back
-								);
-							}}
-						></TouchableOpacity>
-					</View>
-				</Camera>
-				<Pressable
-					onPress={() => handleImageCapture()}
-					style={styles.captureButton}
-				>
-					<Text style={styles.scanText}>Scan</Text>
-				</Pressable>
-			</View>
-		)
+		<View style={styles.container}>
+			<ViroARSceneNavigator
+				initialScene={{
+					scene: InitialScene,
+				}}
+				viroAppProps={{ object: object }}
+			/>
+		</View>
 	);
 };
 

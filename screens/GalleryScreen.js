@@ -30,6 +30,9 @@ const InitialScene = (props) => {
 		eye: {
 			diffuseTexture: require("../assets/eyeTextureNew2.jpg"),
 		},
+		toro: {
+			diffuseTexture: require("../assets/toro.jpg"),
+		},
 	});
 
 	ViroAnimations.registerAnimations({
@@ -50,10 +53,14 @@ const InitialScene = (props) => {
 					style={{ fontSize: 80, fontFamily: "Arial", color: "red" }}
 				/>
 			) : (
-				<ViroText
-					text={"None"}
-					position={[0, 1, -3]}
-					style={{ fontSize: 80, fontFamily: "Arial", color: "red" }}
+				<Viro3DObject
+					source={require("../assets/toro.obj")}
+					position={[0, 0, -6]}
+					rotation={[100, 100, 0]}
+					scale={[0.5, 0.5, 0.5]}
+					animation={{ name: "rotate", loop: true, run: true }}
+					materials={["toro"]}
+					type="OBJ"
 				/>
 			)}
 		</ViroARScene>
@@ -62,7 +69,7 @@ const InitialScene = (props) => {
 
 const GalleryScreen = () => {
 	const [image, setImage] = useState(null);
-	const [text, setText] = useState("Kabo");
+	const [text, setText] = useState();
 	const [object, setObject] = useState();
 
 	useEffect(() => {
@@ -90,25 +97,12 @@ const GalleryScreen = () => {
 
 	return (
 		<View style={styles.container}>
-			<ViroARSceneNavigator
-				initialScene={{
-					scene: InitialScene,
-				}}
-				viroAppProps={{ object: object }}
-			/>
 			<Text>Text Recognition</Text>
 			<TouchableOpacity style={styles.button} onPress={() => chooseFile()}>
 				<Text style={styles.buttonText}>Pick a photo</Text>
 			</TouchableOpacity>
 
 			{text ? <Text>{text}</Text> : null}
-			{text === "Sako" ? (
-				setObject("eye")
-			) : text === "Kabo" ? (
-				<Text>lezgo2</Text>
-			) : (
-				<Text>here</Text>
-			)}
 		</View>
 	);
 };
@@ -116,6 +110,8 @@ const GalleryScreen = () => {
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
+		alignItems: "center",
+		justifyContent: "center",
 	},
 	button: {
 		backgroundColor: "blue",
