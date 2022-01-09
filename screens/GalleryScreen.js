@@ -28,7 +28,7 @@ const InitialScene = (props) => {
 	let data = props.sceneNavigator.viroAppProps;
 	ViroMaterials.createMaterials({
 		eye: {
-			diffuseTexture: require("E://New folder//Navigate//eight//myapp//assets//eyeTextureNew2.jpg"),
+			diffuseTexture: require("../assets/eyeTextureNew2.jpg"),
 		},
 	});
 

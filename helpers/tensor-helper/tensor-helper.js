@@ -2,11 +2,11 @@ import * as tf from "@tensorflow/tfjs";
 import "@tensorflow/tfjs-react-native";
 import { bundleResourceIO, decodeJpeg } from "@tensorflow/tfjs-react-native";
 
-import { Base64Binary } from "/New folder/Navigate/eight/myapp/src/utils/utils";
+import { Base64Binary } from "../../src/utils/utils";
 const BITMAP_DIMENSION = 224;
 
-const modelJson = require("/New folder/Navigate/eight/myapp/src/model/model.json");
-const modelWeights = require("/New folder/Navigate/eight/myapp/src/model/weights.bin");
+const modelJson = require("../../src/model/model.json");
+const modelWeights = require("../../src/model/weights.bin");
 
 // 0: channel from JPEG-encoded image
 // 1: gray scale
