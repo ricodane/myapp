@@ -1,6 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "react-native-gesture-handler";
-import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import {
+	StyleSheet,
+	Text,
+	View,
+	TouchableOpacity,
+	BackHandler,
+	Alert,
+} from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
@@ -27,17 +34,42 @@ const Tab = createBottomTabNavigator();
 const TabNavigator = () => {
 	return (
 		<Tab.Navigator
-			screenOptions={{ headerShown: false }}
+			screenOptions={{ headerShown: false, tabBarShowLabel: false }}
 			tabBar={(props) => <MyTabBar {...props} />}
 		>
 			<Tab.Screen name="Home" component={FirstScreenNavigator} />
-			<Tab.Screen name="Camera" component={SecondScreenNavigator} />
+			<Tab.Screen
+				name="Camera"
+				component={SecondScreenNavigator}
+				options={{ unmountOnBlur: true }}
+			/>
 			<Tab.Screen name="Gallery" component={ThirdScreenNavigator} />
 		</Tab.Navigator>
 	);
 };
 
 const MyTabBar = ({ state, descriptors, navigation }) => {
+	useEffect(() => {
+		const backAction = () => {
+			Alert.alert("Hold on!", "Are you sure you want to exit?", [
+				{
+					text: "Cancel",
+					onPress: () => null,
+					style: "cancel",
+				},
+				{ text: "yes", onPress: () => BackHandler.exitApp() },
+			]);
+			return true;
+		};
+
+		const backHandler = BackHandler.addEventListener(
+			"hardwareBackPress",
+			backAction
+		);
+
+		return () => backHandler.remove();
+	}, []);
+
 	return (
 		<View
 			style={{

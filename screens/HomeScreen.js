@@ -281,7 +281,7 @@ const styles = StyleSheet.create({
 		shadowOpacity: 0.3,
 		shadowOffset: { height: 10 },
 		left: 280,
-		top: 500,
+		top: 480,
 	},
 	menu: {
 		backgroundColor: "#F02A4B",
@@ -292,7 +292,7 @@ const styles = StyleSheet.create({
 		borderRadius: 48 / 2,
 		backgroundColor: "#FFF",
 		left: 285,
-		top: 545,
+		top: 525,
 	},
 	third: {
 		width: 48,

@@ -9,68 +9,15 @@ import {
 	Image,
 	StyleSheet,
 	Button,
+	Alert,
 } from "react-native";
 import { launchImageLibrary } from "react-native-image-picker";
 import TextRecognition from "react-native-text-recognition";
-import {
-	ViroARScene,
-	ViroText,
-	ViroConstants,
-	ViroARSceneNavigator,
-	ViroBox,
-	ViroMaterials,
-	ViroAnimations,
-	Viro3DObject,
-	ViroAmbientLight,
-} from "@viro-community/react-viro";
-
-const InitialScene = (props) => {
-	let data = props.sceneNavigator.viroAppProps;
-	ViroMaterials.createMaterials({
-		eye: {
-			diffuseTexture: require("../assets/eyeTextureNew2.jpg"),
-		},
-		toro: {
-			diffuseTexture: require("../assets/toro.jpg"),
-		},
-	});
-
-	ViroAnimations.registerAnimations({
-		rotate: {
-			duration: 2500,
-			properties: {
-				rotateY: "+=90",
-			},
-		},
-	});
-	return (
-		<ViroARScene>
-			<ViroAmbientLight color="#ffffff" />
-			{data.object === "eye" ? (
-				<ViroText
-					text={"Here"}
-					position={[0, 1, -3]}
-					style={{ fontSize: 80, fontFamily: "Arial", color: "red" }}
-				/>
-			) : (
-				<Viro3DObject
-					source={require("../assets/toro.obj")}
-					position={[0, 0, -6]}
-					rotation={[100, 100, 0]}
-					scale={[0.5, 0.5, 0.5]}
-					animation={{ name: "rotate", loop: true, run: true }}
-					materials={["toro"]}
-					type="OBJ"
-				/>
-			)}
-		</ViroARScene>
-	);
-};
 
 const GalleryScreen = () => {
 	const [image, setImage] = useState(null);
-	const [text, setText] = useState();
-	const [object, setObject] = useState();
+	const [textDefault, setText] = useState();
+	const [object, setObject] = useState("");
 
 	useEffect(() => {
 		(async () => {
@@ -80,6 +27,12 @@ const GalleryScreen = () => {
 				console.log(result);
 
 				setText(result);
+
+				let lowerCaseText = result.toString().toLowerCase();
+
+				console.log(lowerCaseText);
+
+				setObject(lowerCaseText);
 			}
 		})();
 	}, [image]);
@@ -97,12 +50,53 @@ const GalleryScreen = () => {
 
 	return (
 		<View style={styles.container}>
-			<Text>Text Recognition</Text>
 			<TouchableOpacity style={styles.button} onPress={() => chooseFile()}>
-				<Text style={styles.buttonText}>Pick a photo</Text>
+				<Text style={styles.buttonText}>Pamili ug imahe</Text>
 			</TouchableOpacity>
-
-			{text ? <Text>{text}</Text> : null}
+			<Text style={{ fontSize: 32 }}>{textDefault}</Text>
+			{object == "mata" ? (
+				<Image source={require("../assets/images/mata.jpg")} />
+			) : object == "apa" ? (
+				<Image source={require("../assets/images/apa.jpg")} />
+			) : object == "talong" ? (
+				<Image source={require("../assets/images/talong.jpg")} />
+			) : object == "sako" ? (
+				<Image source={require("../assets/images/sako.jpg")} />
+			) : object == "lata" ? (
+				<Image source={require("../assets/images/lata.jpg")} />
+			) : object == "pana" ? (
+				<Image source={require("../assets/images/pana.jpg")} />
+			) : object == "baki" ? (
+				<Image source={require("../assets/images/baki.jpg")} />
+			) : object == "gatas" ? (
+				<Image source={require("../assets/images/gatas.jpg")} />
+			) : object == "dahon" ? (
+				<Image source={require("../assets/images/dahon.png")} />
+			) : object == "hagdan" ? (
+				<Image source={require("../assets/images/hagdan.jpg")} />
+			) : object == "isda" ? (
+				<Image source={require("../assets/images/isda.png")} />
+			) : object == "unlan" ? (
+				<Image source={require("../assets/images/unlan.jpg")} />
+			) : object == "radyo" ? (
+				<Image source={require("../assets/images/radyo.jpg")} />
+			) : object == "yabi" ? (
+				<Image source={require("../assets/images/yabi.jpg")} />
+			) : object == "sudlay" ? (
+				<Image source={require("../assets/images/sudlay.jpg")} />
+			) : object == "basu" ? (
+				<Image source={require("../assets/images/basu.jpg")} />
+			) : object == "bula" ? (
+				<Image source={require("../assets/images/bula.jpg")} />
+			) : object == "garapon" ? (
+				<Image source={require("../assets/images/garapon.jpg")} />
+			) : object == "ublung" ? (
+				<Image source={require("../assets/images/ublung.png")} />
+			) : object == "sayal" ? (
+				<Image source={require("../assets/images/sayal.jpg")} />
+			) : (
+				console.log(object)
+			)}
 		</View>
 	);
 };
