@@ -301,14 +301,10 @@ const InitialScene = (props) => {
 					type="OBJ"
 				/>
 			) : (
-				<Viro3DObject
-					source={require("../assets/toro.obj")}
-					position={[0, 0, -3]}
-					rotation={[-85, 40, 0]}
-					scale={[0.3, 0.3, 0.3]}
-					animation={{ name: "rotate", loop: true, run: true }}
-					materials={["bull"]}
-					type="OBJ"
+				<ViroText
+					text={"None"}
+					position={[0, 1, -3]}
+					style={{ fontSize: 80, fontFamily: "Arial", color: "red" }}
 				/>
 			)}
 		</ViroARScene>
