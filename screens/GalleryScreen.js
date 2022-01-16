@@ -50,7 +50,7 @@ const GalleryScreen = () => {
 
 	return (
 		<View style={styles.container}>
-			<TouchableOpacity style={styles.button} onPress={() => chooseFile()}>
+			<TouchableOpacity style={styles.button} onPress={() => chooseFile(null)}>
 				<Text style={styles.buttonText}>Pamili ug imahe</Text>
 			</TouchableOpacity>
 			<Text style={{ fontSize: 32 }}>{textDefault}</Text>
@@ -95,7 +95,7 @@ const GalleryScreen = () => {
 			) : object == "sayal" ? (
 				<Image source={require("../assets/images/sayal.jpg")} />
 			) : (
-				console.log(object)
+				<Text>Cannot display object for that word! Try again!</Text>
 			)}
 		</View>
 	);

@@ -302,9 +302,17 @@ const InitialScene = (props) => {
 				/>
 			) : (
 				<ViroText
-					text={"None"}
+					text={"Object Not found!"}
+					textAlign={"left"}
+					textAlignVertical={"top"}
+					textLineBreakMode={"Justify"}
 					position={[0, 1, -3]}
-					style={{ fontSize: 80, fontFamily: "Arial", color: "red" }}
+					style={{
+						fontSize: 26,
+						fontFamily: "Arial",
+
+						color: "red",
+					}}
 				/>
 			)}
 		</ViroARScene>

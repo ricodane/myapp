@@ -24,7 +24,6 @@
     "@tensorflow/tfjs-react-native": "^0.8.0",
     "@viro-community/react-viro": "^2.22.0",
     "expo": "~43.0.2",
-    "expo-camera": "~12.0.3",
     "expo-checkbox": "^2.0.0",
     "expo-constants": "~12.1.3",
     "expo-gl": "^11.0.3",
@@ -57,7 +56,10 @@
     "react-native-text-recognition": "^1.0.0",
     "react-native-web": "0.17.1",
     "react-navigation": "^4.4.4",
-    "react-navigation-stack": "^2.10.4"
+    "react-navigation-stack": "^2.10.4",
+    "react-redux": "^7.2.6",
+    "redux": "^4.1.2",
+    "redux-thunk": "^2.4.1"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9"
