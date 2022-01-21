@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import React, { useState, useEffect } from "react";
 import {
 	SafeAreaView,
@@ -95,7 +94,7 @@ const GalleryScreen = () => {
 			) : object == "sayal" ? (
 				<Image source={require("../assets/images/sayal.jpg")} />
 			) : (
-				<Text>Cannot display object for that word! Try again!</Text>
+				console.log("wala")
 			)}
 		</View>
 	);

@@ -40,7 +40,7 @@ const ThirdScreenNavigator = () => {
 		<Stack.Navigator
 			screenOptions={{ headerShown: false, unmountOnBlur: true }}
 		>
-			<Stack.Screen name="Galleryscreen" component={GalleryScreen} />
+			<Stack.Screen name="GalleryScreen" component={GalleryScreen} />
 		</Stack.Navigator>
 	);
 };

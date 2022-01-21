@@ -1,6 +1,5 @@
 # This file uses centimeters as units for non-parametric coordinates.
 
-mtllib eggplant.mtl
 g default
 v -0.654708 4.325519 -0.645843
 v 0.665220 4.238451 -0.661396

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import {
 	SafeAreaView,
 	View,
@@ -8,8 +8,11 @@ import {
 	Image,
 	StyleSheet,
 	Button,
+	unstable_enableLogBox,
 } from "react-native";
 import { useIsFocused } from "@react-navigation/native";
+import { RNCamera } from "react-native-camera";
+import Tts from "react-native-tts";
 
 import TextRecognition from "react-native-text-recognition";
 import {
@@ -22,6 +25,7 @@ import {
 	ViroAnimations,
 	Viro3DObject,
 	ViroAmbientLight,
+	ViroScene,
 } from "@viro-community/react-viro";
 
 const InitialScene = (props) => {
@@ -300,19 +304,17 @@ const InitialScene = (props) => {
 					materials={["skirt"]}
 					type="OBJ"
 				/>
+			) : data.object === "none" ? (
+				<ViroText
+					text={"Object not found"}
+					position={[0, 1.5, -3]}
+					style={{ fontSize: 20, fontFamily: "Arial", color: "red" }}
+				/>
 			) : (
 				<ViroText
-					text={"Object Not found!"}
-					textAlign={"left"}
-					textAlignVertical={"top"}
-					textLineBreakMode={"Justify"}
-					position={[0, 1, -3]}
-					style={{
-						fontSize: 26,
-						fontFamily: "Arial",
-
-						color: "red",
-					}}
+					text={"Object not found"}
+					position={[0, 1.5, -3]}
+					style={{ fontSize: 20, fontFamily: "Arial", color: "red" }}
 				/>
 			)}
 		</ViroARScene>
@@ -321,18 +323,94 @@ const InitialScene = (props) => {
 
 const CameraScreen = () => {
 	const [image, setImage] = useState(null);
-	const [text, setText] = useState();
+	const [textDetect, setTextDetect] = useState("");
 	const [object, setObject] = useState();
+	const [type_camera, setType_camera] = useState(RNCamera.Constants.Type.back);
+	const [id, setID] = useState();
+
+	const camera = useRef(null);
+
 	const isFocused = useIsFocused();
+
+	const handleVoice = (ttsText) => {
+		Tts.speak(ttsText);
+	};
+
+	useEffect(() => {
+		console.log("The value of textDetect is now", textDetect);
+	}, [textDetect]);
 
 	return (
 		<View style={styles.container}>
-			<ViroARSceneNavigator
-				initialScene={{
-					scene: InitialScene,
-				}}
-				viroAppProps={{ object: object }}
-			/>
+			{textDetect.length === 0 ? (
+				<RNCamera
+					ref={camera}
+					style={styles.preview}
+					type={type_camera}
+					defaultOnFocusComponent={true}
+					onTextRecognized={(item, index) => {
+						if (item.textBlocks != 0) {
+							setID(id, item.textBlocks);
+							item.textBlocks.map((index) => {
+								console.log(index.value);
+								setTextDetect(index.value);
+								handleVoice(index.value);
+								{
+									index.value == "Mata"
+										? setObject("eye")
+										: index.value == "Apa"
+										? setObject("cone")
+										: index.value == "Talong"
+										? setObject("eggplant")
+										: index.value == "Sako"
+										? setObject("sack")
+										: index.value == "Lata"
+										? setObject("can")
+										: index.value == "Pana"
+										? setObject("bow")
+										: index.value == "Baki"
+										? setObject("frog")
+										: index.value == "Gatas"
+										? setObject("milk")
+										: index.value == "Dahon"
+										? setObject("leaf")
+										: index.value == "Hagdan"
+										? setObject("stair")
+										: index.value == "Isda"
+										? setObject("fish")
+										: index.value == "Unlan"
+										? setObject("pillow")
+										: index.value == "Radyo"
+										? setObject("radio")
+										: index.value == "Yabi"
+										? setObject("key")
+										: index.value == "Sudlay"
+										? setObject("comb")
+										: index.value == "Basu"
+										? setObject("cup")
+										: index.value == "Bula"
+										? setObject("bull")
+										: index.value == "Garapon"
+										? setObject("jar")
+										: index.value == "Ublung"
+										? setObject("egg")
+										: index.value == "Sayal"
+										? setObject("skirt")
+										: setObject("none");
+								}
+							});
+						} else {
+						}
+					}}
+				></RNCamera>
+			) : (
+				<ViroARSceneNavigator
+					initialScene={{
+						scene: InitialScene,
+					}}
+					viroAppProps={{ object: object }}
+				/>
+			)}
 		</View>
 	);
 };
@@ -340,6 +418,13 @@ const CameraScreen = () => {
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
+	},
+	arscreen: {
+		position: "absolute",
+		height: "100%",
+		width: "100%",
+		flex: 1,
+		zIndex: 100,
 	},
 	scanText: {
 		fontSize: 20,
@@ -384,6 +469,13 @@ const styles = StyleSheet.create({
 		alignItems: "center",
 		justifyContent: "center",
 		backgroundColor: "red",
+	},
+	preview: {
+		flex: 1,
+		justifyContent: "flex-end",
+		alignItems: "center",
+		width: "100%",
+		backgroundColor: "blue",
 	},
 });
 

@@ -1,6 +1,6 @@
 # This file uses centimeters as units for non-parametric coordinates.
 
-mtllib LowpolyMilk.mtl
+
 g default
 v -9.022896 0.019993 -9.629100
 v -0.977104 0.019993 -9.629100

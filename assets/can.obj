@@ -1,6 +1,6 @@
 # Blender v2.90.1 OBJ File: 'Coke Can.blend'
 # www.blender.org
-mtllib CokeCan.mtl
+
 o Cylinder
 v 0.000000 0.029086 -0.297536
 v -0.000001 1.446168 -0.317891

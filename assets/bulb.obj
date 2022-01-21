@@ -1,6 +1,6 @@
 # Blender v2.79 (sub 0) OBJ File: ''
 # www.blender.org
-mtllib bolb.mtl
+
 o Sphere
 v -0.000001 2.175349 -1.094992
 v -0.000001 2.276573 -1.166200

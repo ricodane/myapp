@@ -1,7 +1,5 @@
 # This file uses centimeters as units for non-parametric coordinates.
 
-mtllib jar.mtl
-g default
 v -2.142117 4.650784 1.997414
 v -1.965343 4.818291 2.054775
 v -1.791193 4.986579 2.118755

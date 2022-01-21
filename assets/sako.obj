@@ -1,6 +1,6 @@
 # This file uses centimeters as units for non-parametric coordinates.
 
-mtllib Sack_object_01.mtl
+
 g default
 v 1.294217 0.244025 0.254630
 v 1.905694 0.244757 0.254630

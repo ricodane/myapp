@@ -5,7 +5,7 @@
 #Face Count 4348
 #Auto scale x=1.000000 y=1.000000 z=1.000000
 #Auto offset x=-0.000000 y=-0.000000 z=-0.000000
-mtllib bowsample.mtl
+
 usemtl defaultMat
 v 0.2465074 -2.17117404 0.59400606
 v 0.24669921 -2.45577049 0.47122699
